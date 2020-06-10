@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+	<bean class="cat.diba.materialesportiu.service.impl.ActivityLocalServiceImpl" id="cat.diba.materialesportiu.service.ActivityLocalService" />
+	<bean class="cat.diba.materialesportiu.service.persistence.impl.ActivityPersistenceImpl" id="cat.diba.materialesportiu.service.persistence.ActivityPersistence" parent="basePersistence" />
+	<bean class="cat.diba.materialesportiu.service.persistence.impl.ActivityFinderImpl" id="cat.diba.materialesportiu.service.persistence.ActivityFinder" parent="basePersistence" />
+	<bean class="cat.diba.materialesportiu.service.impl.ActivityDependsOnLocalServiceImpl" id="cat.diba.materialesportiu.service.ActivityDependsOnLocalService" />
+	<bean class="cat.diba.materialesportiu.service.persistence.impl.ActivityDependsOnPersistenceImpl" id="cat.diba.materialesportiu.service.persistence.ActivityDependsOnPersistence" parent="basePersistence" />
+	<bean class="cat.diba.materialesportiu.service.impl.LoanLocalServiceImpl" id="cat.diba.materialesportiu.service.LoanLocalService" />
+	<bean class="cat.diba.materialesportiu.service.persistence.impl.LoanPersistenceImpl" id="cat.diba.materialesportiu.service.persistence.LoanPersistence" parent="basePersistence" />
+	<bean class="cat.diba.materialesportiu.service.persistence.impl.LoanFinderImpl" id="cat.diba.materialesportiu.service.persistence.LoanFinder" parent="basePersistence" />
+	<bean class="cat.diba.materialesportiu.service.impl.LoanActivityLocalServiceImpl" id="cat.diba.materialesportiu.service.LoanActivityLocalService" />
+	<bean class="cat.diba.materialesportiu.service.persistence.impl.LoanActivityPersistenceImpl" id="cat.diba.materialesportiu.service.persistence.LoanActivityPersistence" parent="basePersistence" />
+	<bean class="cat.diba.materialesportiu.service.impl.LocalEntityLocalServiceImpl" id="cat.diba.materialesportiu.service.LocalEntityLocalService" />
+	<bean class="cat.diba.materialesportiu.service.persistence.impl.LocalEntityPersistenceImpl" id="cat.diba.materialesportiu.service.persistence.LocalEntityPersistence" parent="basePersistence" />
+	<bean class="cat.diba.materialesportiu.service.impl.MaintenanceLocalServiceImpl" id="cat.diba.materialesportiu.service.MaintenanceLocalService" />
+	<bean class="cat.diba.materialesportiu.service.persistence.impl.MaintenancePersistenceImpl" id="cat.diba.materialesportiu.service.persistence.MaintenancePersistence" parent="basePersistence" />
+	<bean class="cat.diba.materialesportiu.service.impl.MaterialLocalServiceImpl" id="cat.diba.materialesportiu.service.MaterialLocalService" />
+	<bean class="cat.diba.materialesportiu.service.persistence.impl.MaterialPersistenceImpl" id="cat.diba.materialesportiu.service.persistence.MaterialPersistence" parent="basePersistence" />
+</beans>

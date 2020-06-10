@@ -1,0 +1,6 @@
+Bundle-Name: PrestecMaterialEsportiu-web
+Bundle-SymbolicName: cat.diba.materialesportiu.web
+Bundle-Version: 1.0.0
+Export-Package: \
+	cat.diba.materialesportiu.constants,\
+	cat.diba.materialesportiu.web.constants

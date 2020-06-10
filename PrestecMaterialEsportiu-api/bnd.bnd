@@ -1,0 +1,10 @@
+Bundle-Name: PrestecMaterialEsportiu-api
+Bundle-SymbolicName: cat.diba.materialesportiu.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	cat.diba.materialesportiu.exception,\
+	cat.diba.materialesportiu.model,\
+	cat.diba.materialesportiu.service,\
+	cat.diba.materialesportiu.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../PrestecMaterialEsportiu-service/service.xml

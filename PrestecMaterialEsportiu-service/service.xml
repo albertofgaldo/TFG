@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_1_0.dtd">
+
+<service-builder  package-path="cat.diba.materialesportiu">
+	<namespace>PME</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity local-service="true" name="Maintenance"	remote-service="false" uuid="false">
+
+		<!-- PK fields -->
+		<column name="maintenanceId" primary="true" type="long" />
+
+		<!-- Group instance -->
+		<column name="activityId" type="long" primary="false" filter-primary="false" />
+		<column name="label" type="String" />
+		<column name="description" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+        <column name="isDone" type="Boolean"></column>
+        <column name="loanId" type="long"></column>
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="startDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="ActivityId" return-type="Collection">
+			<finder-column name="activityId" />
+		</finder>
+		<finder name="ActivityId_Label" return-type="Maintenance">
+            <finder-column name="activityId"></finder-column>
+			<finder-column name="label" />
+		</finder>
+
+		<!-- References -->
+        <finder name="CompanyGroup" return-type="Collection">
+            <finder-column name="companyId"></finder-column>
+            <finder-column name="groupId"></finder-column>
+        </finder>
+        <finder name="LoanIdIsDone" return-type="Collection">
+            <finder-column name="loanId"></finder-column>
+            <finder-column name="isDone"></finder-column>
+        </finder>
+        <finder name="LoanIdActivityIdIsDone" return-type="Collection">
+            <finder-column name="loanId"></finder-column>
+            <finder-column name="activityId"></finder-column>
+            <finder-column name="isDone"></finder-column>
+        </finder>
+
+		<reference entity="AssetEntry"
+			package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag"
+			package-path="com.liferay.portlet.asset" />
+	</entity>
+	<entity local-service="true" name="Material" remote-service="false" >
+		<column name="materialId" primary="true" type="long"></column>
+		<column name="name" type="String" localized="true"></column>		
+		<column name="heigh" type="float"></column>
+		<column name="width" type="float"></column>
+		<column name="longitude" type="float"></column>
+		<column name="weight" type="float"></column>
+        <column name="activityId" type="long"></column>
+        <column name="quantity" type="int"></column>
+		<column name="groupId" type="long"></column>
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+        <order by="asc">
+            <order-column name="name" order-by="asc"></order-column>
+        </order>
+        <finder name="MaterialId" return-type="Material">
+            <finder-column name="materialId"></finder-column>
+        </finder>
+        <finder name="ActivityId" return-type="Collection">
+            <finder-column name="activityId"></finder-column>
+        </finder>
+        <finder name="CompanyGroup" return-type="Collection">
+            <finder-column name="companyId"></finder-column>
+            <finder-column name="groupId"></finder-column>
+        </finder>
+        <finder name="CompanyGroupActivityId" return-type="Collection">
+            <finder-column name="companyId"></finder-column>
+            <finder-column name="groupId"></finder-column>
+            <finder-column name="activityId"></finder-column>
+        </finder>
+        
+	</entity>
+	<entity name="Activity" local-service="true" remote-service="false">
+		<column name="activityId" type="long" primary="true"></column>
+		<column name="name" type="String" localized="true"></column>
+		<column name="description" type="String" localized="true"></column>
+		<column name="age" type="int"></column>
+		<column name="minParticipants" type="int"></column>
+		<column name="maxParticipants" type="int"></column>
+		<column name="usageRules" type="String" localized="true"></column>
+		<column name="loanConditions" type="String" localized="true"></column>
+		<column name="titulationIsRequired" type="boolean"></column>
+		<column name="totalStock" type="int"></column>
+        <column name="availableStock" type="int"></column>
+		<column name="daysBeforeLoan" type="int"></column>
+		<column name="daysBooking" type="int"></column>
+		<column name="daysAfterLoan" type="int"></column>
+
+
+		<!-- PK fields -->
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+        <order by="asc">
+            <order-column name="name" order-by="asc"></order-column>
+        </order>
+        <finder name="ActivityId" return-type="Activity">
+            <finder-column name="activityId"></finder-column>
+        </finder>
+        <finder name="AvailableStock" return-type="Collection">
+            <finder-column name="availableStock" comparator="&gt;"></finder-column>
+        </finder>
+        <finder name="CompanyGroup" return-type="Collection">
+            <finder-column name="companyId"></finder-column>
+            <finder-column name="groupId"></finder-column>
+        </finder>
+	</entity>
+	<entity name="ActivityDependsOn" local-service="true" remote-service="false">
+		<column name="activityDependsOnId" primary="true" type="long"></column>
+        <column filter-primary="false" name="activityId" type="long"></column>
+		<column name="parentActivityId" type="long"></column>
+
+
+		<!-- PK fields -->
+
+		<!-- Group instance -->
+        <column name="quantity" type="int"></column>
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+
+
+		<!-- PK fields -->
+
+		<!-- Group instance -->
+
+		<!-- Audit fields -->
+        <finder name="CompanyGroup" return-type="Collection">
+            <finder-column name="companyId"></finder-column>
+            <finder-column name="groupId"></finder-column>
+        </finder>
+        <finder name="ActivityId" return-type="Collection">
+            <finder-column name="activityId"></finder-column>
+        </finder>
+        <finder name="ActivityIdParentActivityId" return-type="ActivityDependsOn">
+            <finder-column name="activityId"></finder-column>
+            <finder-column name="parentActivityId"></finder-column>
+        </finder>
+        <finder name="ParentActivityId" return-type="Collection">
+            <finder-column name="parentActivityId"></finder-column>
+        </finder>
+	</entity>
+	<entity name="LoanActivity" local-service="true" remote-service="false">
+		<column name="loanActivityId" type="long" primary="true"></column>
+		<column name="loanId" type="long"></column>
+		<column name="activityId" type="long"></column>
+		<column name="quantity" type="int"></column>
+
+
+		<!-- PK fields -->
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+        <finder name="CompanyGroup" return-type="Collection">
+            <finder-column name="companyId"></finder-column>
+            <finder-column name="groupId"></finder-column>
+        </finder>
+        <finder name="LoanId" return-type="Collection">
+            <finder-column name="loanId"></finder-column>
+        </finder>
+        <finder name="ActivityId" return-type="Collection">
+            <finder-column name="activityId"></finder-column>
+        </finder>
+        <finder name="LoanIdActivityId" return-type="LoanActivity">
+            <finder-column name="loanId"></finder-column>
+            <finder-column name="activityId"></finder-column>
+        </finder>
+	</entity>
+	<entity name="Loan" local-service="true" remote-service="false"	>
+		<column name="loanId" type="long" primary="true"></column>
+		<column name="localEntityId" type="long"></column>
+		<column name="pickupDate" type="Date"></column>
+		<column name="returnDate" type="Date"></column>
+		<column name="activityDate" type="Date"></column>
+		<column name="activityName" type="String"></column>
+		<column name="participantsNum" type="int"></column>
+		<column name="participantsKidsNum" type="int"></column>
+		<column name="description" type="String"></column>
+		<column name="contactPerson" type="String"></column>
+		<column name="positionPerson" type="String"></column>
+		<column name="telephone" type="String"></column>
+		<column name="email" type="String"></column>
+		<column name="pmt" type="String"></column>
+        <column name="status" type="String"></column>
+
+
+		<!-- PK fields -->
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+        <order by="desc">
+            <order-column name="pickupDate"></order-column>
+        </order>
+        <finder name="CompanyGroup" return-type="Collection">
+            <finder-column name="companyId"></finder-column>
+            <finder-column name="groupId"></finder-column>
+        </finder>
+        <finder name="StatusPastPickupDate" return-type="Collection">
+            <finder-column name="status"></finder-column>
+            <finder-column name="pickupDate" comparator="&lt;"></finder-column>
+        </finder>
+        <finder name="StatusPastReturnDate" return-type="Collection">
+            <finder-column name="status"></finder-column>
+            <finder-column name="returnDate" comparator="&lt;"></finder-column>
+        </finder>
+        <finder name="Status" return-type="Collection">
+            <finder-column name="status"></finder-column>
+        </finder>
+	</entity>
+	<entity name="LocalEntity" local-service="true"	remote-service="false">
+		<column name="localEntityId" type="long" primary="true"></column>
+		<column name="cif" type="String"></column>
+		<column name="name" type="String"></column>
+		<column name="telephone" type="String"></column>
+		<column name="email" type="String"></column>
+
+
+		<!-- PK fields -->
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long"></column>
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+        <order by="asc">
+            <order-column name="name" order-by="asc"></order-column>
+        </order>
+        <finder name="Name" return-type="Collection">
+            <finder-column name="name"></finder-column>
+        </finder>
+        <finder name="CompanyGroup" return-type="Collection">
+            <finder-column name="companyId"></finder-column>
+            <finder-column name="groupId"></finder-column>
+        </finder>
+        <finder name="Cif" return-type="LocalEntity">
+            <finder-column name="cif"></finder-column>
+        </finder>
+	</entity>
+</service-builder>

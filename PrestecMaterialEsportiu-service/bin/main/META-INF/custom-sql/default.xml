@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom-sql>
+    <sql id="cat.diba.materialesportiu.service.persistence.LoanFinder.findByStockOutActivityIdBetweenDates">
+<![CDATA[
+		select SUM(la.quantity) as quantity  from
+		lportal.pme_activity a 
+		inner join lportal.pme_loanactivity la on a.activityId=la.activityId
+		inner join lportal.pme_loan l on la.loanId=l.loanId	
+		where
+		la.activityId = ? and
+		l.status NOT LIKE 'EXPIRED' and
+		(? between l.pickupDate and adddate(l.returnDate, a.daysAfterLoan) or
+		 ? between l.pickupDate and adddate(l.returnDate, a.daysAfterLoan))
+]]>
+    </sql>  
+    <sql id="cat.diba.materialesportiu.service.persistence.LoanFinder.findByStockOutActivityDependsOn">
+<![CDATA[
+		select SUM(la.quantity)*
+		(
+			select ad.quantity from		
+			lportal.pme_activitydependson ad
+			where
+			ad.activityId = ?
+		) as quantity from
+		lportal.pme_activity a 
+		inner join lportal.pme_loanactivity la on a.activityId=la.activityId
+		inner join lportal.pme_loan l on la.loanId=l.loanId         
+		where
+		la.activityId = (
+        	select ad.parentActivityId from		
+			lportal.pme_activitydependson ad
+			where
+			ad.activityId = ?
+        ) and
+        l.status NOT LIKE 'EXPIRED' and
+		(? between l.pickupDate and adddate(l.returnDate, a.daysAfterLoan) or
+		 ? between l.pickupDate and adddate(l.returnDate, a.daysAfterLoan));
+]]>
+    </sql> 
+    <sql id="cat.diba.materialesportiu.service.persistence.LoanFinder.findByCountActivitiesMaintenanceBetweenDates">
+<![CDATA[
+		select count(*) as quantity	from 
+		lportal.pme_maintenance m 
+		where 
+		m.activityId= ? and
+		m.isDone=0 and
+		(? between m.startDate and m.endDate or
+		 ? between m.startDate and m.endDate)
+]]>
+    </sql>   
+    <sql id="cat.diba.materialesportiu.service.persistence.LoanFinder.findByCountActivitiesMaintenanceDependsOn">
+<![CDATA[
+		select count(*)*
+		(
+			select ad.quantity from		
+			lportal.pme_activitydependson ad
+			where
+			ad.activityId = ?
+		) as quantity	from 
+		lportal.pme_maintenance m 
+		where 
+		m.activityId=
+        (
+        	select ad.parentActivityId from		
+			lportal.pme_activitydependson ad           
+			where
+			ad.activityId = ?    
+        )and
+		m.isDone=0 and
+		(? between m.startDate and m.endDate or
+		 ? between m.startDate and m.endDate)
+]]>
+    </sql>      
+    <sql id="cat.diba.materialesportiu.service.persistence.LoanFinder.updateLoanStatusToExpired">
+<![CDATA[
+		update lportal.pme_loan l 
+		inner join (
+		select la.loanId, MIN(a.daysBooking)days from lportal.pme_activity a
+		inner join lportal.pme_loanactivity la on a.activityId=la.activityId
+		group by la.loanId
+		) ala on l.loanId=ala.loanId
+		set l.status='EXPIRED'
+		where l.status like 'NOTCONFIRMED' and
+		(l.pickupDate < curdate() 
+		or
+		adddate(l.createDate,ala.days)< curdate())
+]]>
+    </sql>  
+</custom-sql>

@@ -1,0 +1,17 @@
+Bundle-Name: PrestecMaterialEsportiu-admin
+Bundle-SymbolicName: cat.diba.materialesportiu.admin
+Bundle-Version: 1.0.0
+Export-Package: \
+	cat.diba.materialesportiu.admin.application.list,\
+	cat.diba.materialesportiu.admin.portlet,\
+	cat.diba.materialesportiu.exception,\
+	cat.diba.materialesportiu.model,\
+	cat.diba.materialesportiu.service,\
+	cat.diba.materialesportiu.service.persistence,\
+	cat.diba.materialesportiu.util.comparator,\
+	cat.diba.materialesportiu.util.comparator.localentity,\
+	cat.diba.materialesportiu.util.comparator.activity,\
+	cat.diba.materialesportiu.util.comparator.material,\
+	cat.diba.materialesportiu.util.comparator.maintenance,\
+	cat.diba.materialesportiu.util.comparator.loan,\
+	cat.diba.materialesportiu.constants

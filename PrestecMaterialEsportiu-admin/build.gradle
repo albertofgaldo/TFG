@@ -1,0 +1,12 @@
+dependencies {
+	compileOnly group: "com.liferay", name: "com.liferay.application.list.api", version: "2.0.0"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "3.1.2"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
+	compileOnly group: "javax.portlet", name: "portlet-api", version: "3.0.0"
+	compileOnly group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
+	compileOnly group: "org.osgi", name: "osgi.cmpn", version: "6.0.0"
+	compileOnly project(":modules:PrestecMaterialEsportiu:PrestecMaterialEsportiu-api")
+	compileOnly 'com.liferay:com.liferay.petra.string:2.0.0'
+	compileOnly 'com.liferay:com.liferay.frontend.taglib.clay:1.0.0'	
+}

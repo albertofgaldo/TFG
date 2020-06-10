@@ -1,0 +1,56 @@
+.PrestecMaterialEsportiu-web {
+	
+}
+/*
+label.control-label{
+		display:none;
+	}
+div.input-text-wrapper{
+	margin-top: -15px;
+}
+*/
+#member-fields{
+	.quantity{
+		display:none;
+	}	
+	.loan-materials{
+		display:none;
+	}
+
+	> div > span > span{
+		//> button.add-row{display:block;	}
+		> button.delete-row{display:none;}
+	}
+}
+#dates{
+	display:none;
+}
+#loan-material{
+	label.control-label{
+		display:none;
+	}
+	#activityId{
+		display:none;
+	}
+}
+.hide{
+	display:none;
+}
+h2.titol {
+		padding-top:15px;
+		text-align: center;
+}
+.resum-header{
+	font-weight: bold;
+}
+.resum-data{
+	style{border-bottom-style: inset;}
+}
+#searchTabs{
+	li.tab{
+		border: outset;		
+	}
+	li.active{
+		border: inset;
+	}
+}

@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="cat.diba.materialesportiu.model.Activity">
+		<field name="activityId" type="long" />
+		<field localized="true" name="name" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field localized="true" name="description" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field name="age" type="int" />
+		<field name="minParticipants" type="int" />
+		<field name="maxParticipants" type="int" />
+		<field localized="true" name="usageRules" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field localized="true" name="loanConditions" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field name="titulationIsRequired" type="boolean" />
+		<field name="totalStock" type="int" />
+		<field name="availableStock" type="int" />
+		<field name="daysBeforeLoan" type="int" />
+		<field name="daysBooking" type="int" />
+		<field name="daysAfterLoan" type="int" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="cat.diba.materialesportiu.model.ActivityDependsOn">
+		<field name="activityDependsOnId" type="long" />
+		<field name="activityId" type="long" />
+		<field name="parentActivityId" type="long" />
+		<field name="quantity" type="int" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="cat.diba.materialesportiu.model.Loan">
+		<field name="loanId" type="long" />
+		<field name="localEntityId" type="long" />
+		<field name="pickupDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="returnDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="activityDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="activityName" type="String" />
+		<field name="participantsNum" type="int" />
+		<field name="participantsKidsNum" type="int" />
+		<field name="description" type="String" />
+		<field name="contactPerson" type="String" />
+		<field name="positionPerson" type="String" />
+		<field name="telephone" type="String" />
+		<field name="email" type="String" />
+		<field name="pmt" type="String" />
+		<field name="status" type="String" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="cat.diba.materialesportiu.model.LoanActivity">
+		<field name="loanActivityId" type="long" />
+		<field name="loanId" type="long" />
+		<field name="activityId" type="long" />
+		<field name="quantity" type="int" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="cat.diba.materialesportiu.model.LocalEntity">
+		<field name="localEntityId" type="long" />
+		<field name="cif" type="String" />
+		<field name="name" type="String" />
+		<field name="telephone" type="String" />
+		<field name="email" type="String" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="cat.diba.materialesportiu.model.Maintenance">
+		<field name="maintenanceId" type="long" />
+		<field name="activityId" type="long" />
+		<field name="label" type="String" />
+		<field name="description" type="String" />
+		<field name="startDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="endDate" type="Date">
+			<hint name="show-time">false</hint>
+		</field>
+		<field name="isDone" type="Boolean" />
+		<field name="loanId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="cat.diba.materialesportiu.model.Material">
+		<field name="materialId" type="long" />
+		<field localized="true" name="name" type="String">
+			<hint name="max-length">4000</hint>
+		</field>
+		<field name="heigh" type="float" />
+		<field name="width" type="float" />
+		<field name="longitude" type="float" />
+		<field name="weight" type="float" />
+		<field name="activityId" type="long" />
+		<field name="quantity" type="int" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+</model-hints>
